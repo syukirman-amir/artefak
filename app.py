@@ -1,6 +1,6 @@
 import streamlit as st
 import json
-import prettymaps
+import prettymapp
 import matplotlib.pyplot as plt
 import numpy as np
 
