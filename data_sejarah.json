@@ -1,0 +1,20 @@
+[
+  {
+    "kelurahan": "Tanah Tinggi Barat",
+    "tahun": 1570,
+    "peristiwa": "Penaklukan Portugis",
+    "deskripsi": "Sultan Baabullah mengusir Portugis dari Ternate.",
+    "lat": -0.7833,
+    "lon": 127.3633,
+    "sejarah_lokal": "Tanah Tinggi Barat dikenal karena peranannya dalam perlawanan terhadap penjajahan Portugis."
+  },
+  {
+    "kelurahan": "Salero",
+    "tahun": 1607,
+    "peristiwa": "Kolonial Belanda",
+    "deskripsi": "Belanda mendirikan benteng Oranje di Salero.",
+    "lat": -0.7910,
+    "lon": 127.3638,
+    "sejarah_lokal": "Salero merupakan lokasi penting dalam era kolonial Belanda, dengan benteng sebagai pusat pertahanan."
+  }
+]
