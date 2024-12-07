@@ -1,7 +1,8 @@
 import streamlit as st
-import folium
 import json
-from streamlit_folium import st_folium
+import prettymaps
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Membaca data dari file JSON
 with open('data_sejarah.json', 'r') as f:
@@ -22,23 +23,20 @@ if selected:
     st.write(f"Deskripsi: {selected['deskripsi']}")
     st.write(f"Sejarah Lokal: {selected['sejarah_lokal']}")
 
-# Membuat peta dengan Folium, menggunakan koordinat xmin, xmax, ymin, ymax untuk set zoom dan area peta
-m = folium.Map(
-    location=[(selected["ymin"] + selected["ymax"]) / 2, (selected["xmin"] + selected["xmax"]) / 2],
-    zoom_start=15
-)
+    # Membuat peta menggunakan Prettymaps
+    lat = (selected["ymin"] + selected["ymax"]) / 2  # Rata-rata latitude
+    lon = (selected["xmin"] + selected["xmax"]) / 2  # Rata-rata longitude
 
-# Menambahkan marker untuk kelurahan yang dipilih
-folium.Marker(
-    location=[selected["y"], selected["x"]],
-    popup=f"<b>{selected['kelurahan']}</b><br>{selected['tahun']} - {selected['peristiwa']}<br>{selected['deskripsi']}<br><br>{selected['sejarah_lokal']}",
-).add_to(m)
+    # Gunakan Prettymaps untuk membuat peta
+    ax = prettymaps.plot(
+        (lat, lon),
+        zoom=15,
+        style='carto-positron',  # Gaya peta, Anda bisa menggantinya dengan gaya lain
+        bgcolor='white',  # Latar belakang peta
+        markers=[(lat, lon)],
+        figsize=(10, 10)
+    )
 
-# Menambahkan batas area kelurahan menggunakan polygon
-folium.Rectangle(
-    bounds=[(selected["ymin"], selected["xmin"]), (selected["ymax"], selected["xmax"])],
-    color="blue", weight=2, fill=True, fill_opacity=0.1
-).add_to(m)
+    # Menampilkan peta di Streamlit menggunakan matplotlib
+    st.pyplot(ax)
 
-# Menampilkan peta
-st_folium(m, width=700, height=500)
