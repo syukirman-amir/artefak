@@ -22,15 +22,23 @@ if selected:
     st.write(f"Deskripsi: {selected['deskripsi']}")
     st.write(f"Sejarah Lokal: {selected['sejarah_lokal']}")
 
-# Membuat peta dengan Folium
-m = folium.Map(location=[-0.7833, 127.3633], zoom_start=12)
+# Membuat peta dengan Folium, menggunakan koordinat xmin, xmax, ymin, ymax untuk set zoom dan area peta
+m = folium.Map(
+    location=[(selected["ymin"] + selected["ymax"]) / 2, (selected["xmin"] + selected["xmax"]) / 2],
+    zoom_start=15
+)
 
-# Menambahkan marker untuk setiap kelurahan
-for item in data:
-    folium.Marker(
-        location=[item["lat"], item["lon"]],
-        popup=f"<b>{item['kelurahan']}</b><br>{item['tahun']} - {item['peristiwa']}<br>{item['deskripsi']}<br><br>{item['sejarah_lokal']}",
-    ).add_to(m)
+# Menambahkan marker untuk kelurahan yang dipilih
+folium.Marker(
+    location=[selected["y"], selected["x"]],
+    popup=f"<b>{selected['kelurahan']}</b><br>{selected['tahun']} - {selected['peristiwa']}<br>{selected['deskripsi']}<br><br>{selected['sejarah_lokal']}",
+).add_to(m)
+
+# Menambahkan batas area kelurahan menggunakan polygon
+folium.Rectangle(
+    bounds=[(selected["ymin"], selected["xmin"]), (selected["ymax"], selected["xmax"])],
+    color="blue", weight=2, fill=True, fill_opacity=0.1
+).add_to(m)
 
 # Menampilkan peta
 st_folium(m, width=700, height=500)
