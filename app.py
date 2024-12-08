@@ -26,7 +26,7 @@ if selected:
     lon = (selected["xmin"] + selected["xmax"]) / 2  # Rata-rata longitude
 
     # Menggunakan Prettymaps untuk membuat peta
-    ax = prettymaps.plot(
+    ax = prettymapp.plot(
         (lat, lon),
         zoom=15,
         style='carto-positron',  # Gaya peta, bisa diganti dengan gaya lain
