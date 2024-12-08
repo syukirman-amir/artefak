@@ -1,3 +1,5 @@
+streamlit
+git+https://github.com/abey79/vsketch@1.0.0
+prettymaps
 matplotlib
 numpy
-prettymaps
