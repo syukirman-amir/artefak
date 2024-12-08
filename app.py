@@ -1,8 +1,9 @@
 import streamlit as st
+import prettymaps
+import matplotlib.pyplot as plt
 import json
-import prettymapp
 
-# Membaca data dari file JSON
+# Membaca data dari file JSON (misalnya data sejarah kelurahan)
 with open('data_sejarah.json', 'r') as f:
     data = json.load(f)
 
@@ -26,11 +27,20 @@ if selected:
     lon = (selected["xmin"] + selected["xmax"]) / 2  # Rata-rata longitude
 
     # Menggunakan Prettymaps untuk membuat peta
-    ax = prettymapp.plot(
+    plot = prettymaps.plot(
         (lat, lon),
-        zoom=15,
-        style='carto-positron',  # Gaya peta, bisa diganti dengan gaya lain
+        preset='barcelona',  # Anda bisa mengganti preset sesuai kebutuhan
+    )
+
+    # Mengubah latar belakang peta
+    plot.fig.patch.set_facecolor('#F2F4CB')
+
+    # Menambahkan judul pada peta
+    _ = plot.ax.set_title(
+        f'{selected["kelurahan"]} - Sejarah',
+        font='serif',
+        size=20
     )
 
     # Menampilkan peta di Streamlit
-    st.pyplot(ax)
+    st.pyplot(plot.fig)
