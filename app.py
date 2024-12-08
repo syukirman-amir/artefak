@@ -1,6 +1,6 @@
 import streamlit as st
 import json
-import prettymapp
+import prettymaps
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -28,7 +28,7 @@ if selected:
     lon = (selected["xmin"] + selected["xmax"]) / 2  # Rata-rata longitude
 
     # Gunakan Prettymaps untuk membuat peta
-    ax = prettymapp.plot(
+    ax = prettymaps.plot(
         (lat, lon),
         zoom=15,
         style='carto-positron',  # Gaya peta, Anda bisa menggantinya dengan gaya lain
