@@ -1,5 +1,5 @@
 streamlit
 git+https://github.com/abey79/vsketch@1.0.0
-prettymaps
+git+https://github.com/marceloprates/prettymaps#egg=prettymaps
 matplotlib
 numpy
