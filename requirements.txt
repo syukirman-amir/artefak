@@ -1,4 +1,3 @@
-pip install --upgrade pip
 streamlit
-prettymapp
+prettymapp==0.4.0
 distutils
