@@ -39,4 +39,3 @@ if selected:
 
     # Menampilkan peta di Streamlit menggunakan matplotlib
     st.pyplot(ax)
-
