@@ -1,8 +1,6 @@
 import streamlit as st
 import json
 import prettymaps
-import matplotlib.pyplot as plt
-import numpy as np
 
 # Membaca data dari file JSON
 with open('data_sejarah.json', 'r') as f:
@@ -23,19 +21,16 @@ if selected:
     st.write(f"Deskripsi: {selected['deskripsi']}")
     st.write(f"Sejarah Lokal: {selected['sejarah_lokal']}")
 
-    # Membuat peta menggunakan Prettymaps
+    # Menghitung titik tengah dari batas koordinat (xmin, xmax, ymin, ymax)
     lat = (selected["ymin"] + selected["ymax"]) / 2  # Rata-rata latitude
     lon = (selected["xmin"] + selected["xmax"]) / 2  # Rata-rata longitude
 
-    # Gunakan Prettymaps untuk membuat peta
+    # Menggunakan Prettymaps untuk membuat peta
     ax = prettymaps.plot(
         (lat, lon),
         zoom=15,
-        style='carto-positron',  # Gaya peta, Anda bisa menggantinya dengan gaya lain
-        bgcolor='white',  # Latar belakang peta
-        markers=[(lat, lon)],
-        figsize=(10, 10)
+        style='carto-positron',  # Gaya peta, bisa diganti dengan gaya lain
     )
 
-    # Menampilkan peta di Streamlit menggunakan matplotlib
+    # Menampilkan peta di Streamlit
     st.pyplot(ax)
