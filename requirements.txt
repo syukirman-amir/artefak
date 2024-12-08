@@ -1,4 +1,3 @@
 streamlit
-numpy
-prettymaps @ git+https://github.com/marceloprates/prettymaps.git
+geopandas
 matplotlib
