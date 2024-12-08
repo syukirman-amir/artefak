@@ -1,6 +1,6 @@
 import streamlit as st
 import json
-import prettymaps
+import prettymapp
 
 # Membaca data dari file JSON
 with open('data_sejarah.json', 'r') as f:
